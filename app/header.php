@@ -8,13 +8,14 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-require __DIR__.'/vendor/autoload.php';
+$baseDir = dirname(dirname(__FILE__));
+require $baseDir.'/vendor/autoload.php';
 
-define("BASEPATH", dirname(__FILE__).DIRECTORY_SEPARATOR);
+define("BASEPATH", $baseDir.DIRECTORY_SEPARATOR);
 define("APPPATH", BASEPATH."app".DIRECTORY_SEPARATOR);
 // register exception and error handler
 $whoops = new \Whoops\Run;
-$whoops->pushHandler(new \Whoops\Handler\PlainTextHandler());
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
 $whoops->register();
 
 // load the orm

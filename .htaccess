@@ -1,0 +1,3 @@
+# .htaccess main domain to subdirectory redirect
+RewriteEngine on
+RewriteRule ^$ /pages/ [L,QSA]

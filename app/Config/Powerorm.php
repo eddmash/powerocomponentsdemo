@@ -19,9 +19,9 @@ class Powerorm
         return [
             'database' => [
                 'host'     => '127.0.0.1',
-                'dbname'   => 'tester',
+                'dbname'   => 'demo_tester',
                 'user'     => 'root',
-                'password' => 'root1.',
+                'password' => '',
                 'driver'   => 'pdo_mysql',
             ],
             'migrations' => [
