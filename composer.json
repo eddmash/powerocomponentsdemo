@@ -1,0 +1,41 @@
+{
+    "name": "eddmash/powercomponents",
+    "type": "project",
+    "keywords": [
+        "orm",
+        "model",
+        "query",
+        "php",
+        "database",
+        "dbal",
+        "django",
+        "migrations",
+        "form",
+        "powerform",
+        "powerormfaker",
+        "faker"
+    ],
+    "description": "A demo to powerorm, powerormfaker, powerform",
+    "homepage": "https://github.com/eddmash/powerorm",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "EDDILBERT MACHARIA",
+            "email": "edd.cowan@gmail.com",
+            "homepage": "http://eddmash.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "eddmash/powerorm": "@dev",
+        "symfony/var-dumper": "^3.3",
+        "maximebf/debugbar": "^1.13",
+        "filp/whoops": "^2.1"
+    },
+
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}
