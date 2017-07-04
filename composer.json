@@ -27,10 +27,12 @@
         }
     ],
     "require": {
-        "eddmash/powerorm": "1.1.0.x-dev",
         "symfony/var-dumper": "^3.3",
         "maximebf/debugbar": "^1.13",
-        "filp/whoops": "^2.1"
+        "filp/whoops": "^2.1",
+        "eddmash/powerorm": "^1.1.@dev",
+        "eddmash/powerormfaker": "^1.1",
+        "eddmash/powerform": "^1.1"
     },
 
   "autoload": {

@@ -7,10 +7,16 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-require_once "header.php";?>
 
-<h4>Welcome to Power Components Demo</h4>
-<?php
-$form = new \App\Forms\Author();
-echo $form;
-require_once "footer.php";
+
+namespace App\Forms;
+
+
+use Eddmash\PowerOrm\Form\ModelForm;
+
+class Author extends ModelForm
+{
+    protected $modelClass = 'App\Models\User';
+    protected $excludes = ['id'];
+
+}
