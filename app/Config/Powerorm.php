@@ -19,9 +19,9 @@ class Powerorm
         return [
             'database' => [
                 'host'     => '127.0.0.1',
-                'dbname'   => 'demo_tester',
+                'dbname'   => 'tester',
                 'user'     => 'root',
-                'password' => '',
+                'password' => 'root1.',
                 'driver'   => 'pdo_mysql',
             ],
             'migrations' => [
@@ -34,7 +34,7 @@ class Powerorm
             'dbPrefix'      => 'demo_',
             'charset'       => 'utf-8',
             'timezone'      => 'Africa/Nairobi',
-            'staticBaseUrl' => "assets/",
+            'staticBaseUrl' => "/assets/",
         ];
 
     }

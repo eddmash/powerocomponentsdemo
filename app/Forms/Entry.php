@@ -14,9 +14,9 @@ namespace App\Forms;
 
 use Eddmash\PowerOrm\Form\ModelForm;
 
-class Author extends ModelForm
+class Entry extends ModelForm
 {
-    protected $modelClass = 'App\Models\Author';
+    protected $modelClass = 'App\Models\Entry';
     protected $excludes = ['id'];
 
 }

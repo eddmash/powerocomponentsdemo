@@ -9,8 +9,13 @@
  */
 require_once "header.php";?>
 
-<h4>Welcome to Power Components Demo</h4>
+
+    <div class="jumbotron">
+        <h1>Welcome You</h1>
+        <p>A simple blog system that show case some usage of the
+            <strong>powerorm</strong> and <strong>powerform</strong> components</p>
+        <p>you can also use powerormfaker to generate data if your lazy</p>
+    </div>
+
 <?php
-$form = new \App\Forms\Author();
-echo $form;
 require_once "footer.php";
