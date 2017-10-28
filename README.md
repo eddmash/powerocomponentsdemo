@@ -1,11 +1,12 @@
-Demo application using powercomponents
---------------------------------------
+Demo application using powerorm ecosystem
+-----------------------------------------
 
 This is a demo app that shows how to use 
- - powerom - the orm
- - powerormfaker - generate dummy data for the orm models
- - powerform - create forms based on the orm models
- - powerormdebugger - toolbar to get sqls statements run bt the orm.
+
+ - [powerom](http://powerorm.readthedocs.io/en/1.1.0/) - the orm
+ - [powerormfaker](http://powerorm.readthedocs.io/en/1.1.0/) - generate dummy data for the orm models
+ - [powerform](http://powerorm.readthedocs.io/en/1.1.0/) - create forms based on the orm models
+ - [powerormdebugger](http://powerorm.readthedocs.io/en/1.1.0/) - toolbar to get sqls statements run bt the orm.
 
 It does not use any frameworks just a straight forward php example for easier understanding.
 
