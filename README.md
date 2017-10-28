@@ -4,6 +4,12 @@ DEMO APP DEMOSTRATING USING POWERORM, POWERFORM, POWERORMFAKER
 This is a demo app that shows how to use powerom, powerormfaker, and powerform.
 It use not framework just a straight forward php example.
 
+NOTE
+----
+This demo uses the development version of the orm branch 1.1.0.x-dev.
+
+This explains why you will find some new features on this demo.
+
 Install
 -------
 ``git clone https://github.com/eddmash/powerocomponentsdemo.git``
@@ -25,7 +31,7 @@ Run migrations
 Once the database is created you will have to create tables that this app uses.
 To do this simple run 
 
-``php pmanager.php makemigrations``
+``vendor/bin/pmanager migrate``
 
 Run php server
 --------------
