@@ -13,6 +13,8 @@ namespace App\Models;
 
 
 use Eddmash\PowerOrm\Model\Model;
+use Eddmash\PowerOrmFaker\FakeableInterface;
+use Faker\Generator;
 
 class Blog extends Model
 {
@@ -22,7 +24,8 @@ class Blog extends Model
         return [
             'name'    => Model::CharField(['maxLength' => 100]),
             'tagline' => Model::TextField(),
-            'author'  => Model::ForeignKey(['to' => Author::class])
+            'author'  => Model::ForeignKey(['to' => Author::class]),
+            'created_by'  => Model::ForeignKey(['to' => Author::class, 'dbIndex'=>false, "relatedName"=>"created_by_"])
         ];
     }
 }

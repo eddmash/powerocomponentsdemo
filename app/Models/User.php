@@ -13,17 +13,26 @@ namespace App\Models;
 
 
 use Eddmash\PowerOrm\Model\Model;
+use Eddmash\PowerOrmFaker\FakeableInterface;
+use Faker\Generator;
 
-class User extends Model
+class User extends Model implements FakeableInterface
 {
-
     private function unboundFields()
     {
-
         return [
             "username" => Model::CharField(['maxLength' => 50]),
             "age" => Model::CharField(['maxLength' => 50]),
         ];
 
+    }
+
+    public function registerFormatter(Generator $generator)
+    {
+        return [
+            "age" => function ($generator, $object) {
+                return $generator->ipv4;
+            },
+        ];
     }
 }

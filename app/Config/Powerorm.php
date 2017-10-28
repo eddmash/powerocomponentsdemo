@@ -12,29 +12,44 @@
 namespace App\Config;
 
 
+use DebugBar\StandardDebugBar;
+use Eddmash\PowerOrm\BaseOrm;
+use Eddmash\PowerOrmDebug\Debugger;
+use Eddmash\PowerOrmFaker\Generatedata;
+
 class Powerorm
 {
     public static function asArray()
     {
         return [
             'database' => [
-                'host'     => '127.0.0.1',
-                'dbname'   => 'tester',
-                'user'     => 'root',
+                'host' => '127.0.0.1',
+                'dbname' => 'tester',
+                'user' => 'root',
                 'password' => 'root1.',
-                'driver'   => 'pdo_mysql',
+                'driver' => 'pdo_mysql',
             ],
             'migrations' => [
-                'path' => sprintf('%sMigrations%s', APPPATH, DIRECTORY_SEPARATOR),
+                'path' => sprintf('%1$s%2$sMigrations%2$s', dirname(__DIR__), DIRECTORY_SEPARATOR),
             ],
             'models' => [
-                'path'      => sprintf('%sModels%s', APPPATH, DIRECTORY_SEPARATOR),
+                'path' => sprintf('%1$s%2$sModels%2$s', dirname(__DIR__), DIRECTORY_SEPARATOR),
                 'namespace' => 'App\Models\\',
             ],
-            'dbPrefix'      => 'demo_',
-            'charset'       => 'utf-8',
-            'timezone'      => 'Africa/Nairobi',
-            'staticBaseUrl' => "/assets/",
+            'dbPrefix' => 'demo_',
+            'charset' => 'utf-8',
+            'timezone' => 'Africa/Nairobi',
+            'commands' =>[
+                Generatedata::class
+            ],
+            'components' => [
+                "debugger" => function (BaseOrm $orm) {
+                    $debugger = new Debugger($orm);
+                    $debugger->setStaticBaseUrl("/assets/");
+                    $debugger->setDebugBar(new StandardDebugBar());
+                    return $debugger;
+                },
+            ]
         ];
 
     }

@@ -1,6 +1,6 @@
 <?php
 
-/**Migration file generated at 02:07:12 on Sun, 2nd July 2017 by PowerOrm(1.1.0-pre-alpha)*/
+/**Migration file generated at 11:10:50 on Fri, 27th October 2017 by PowerOrm(1.1.0-pre-alpha)*/
 
 namespace App\Migrations;
 
@@ -12,7 +12,7 @@ use Eddmash\PowerOrm\Migration\Operation\Field as fieldOperation;
 class m0001_Initial extends Migration{
 
 	public function getDependency(){
-		return [];
+		return [  ];
 	}
 
 	public function getOperations(){
@@ -35,6 +35,7 @@ class m0001_Initial extends Migration{
 						'tagline'=> modelField\TextField::createObject([]),
 						'id'=> modelField\AutoField::createObject(['primaryKey'=> true, 'autoCreated'=> true]),
 						'author'=> modelField\ForeignKey::createObject(['to'=> 'App\Models\Author']),
+						'created_by'=> modelField\ForeignKey::createObject(['to'=> 'App\Models\Author', 'dbIndex'=> false]),
 					],
 				]
 			),

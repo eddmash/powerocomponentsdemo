@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 use function Eddmash\PowerOrm\Model\Query\Expression\q_;
 use function Eddmash\PowerOrm\Model\Query\Expression\or_;
 use function Eddmash\PowerOrm\Model\Query\Expression\not_;
@@ -17,6 +16,7 @@ use function Eddmash\PowerOrm\Model\Query\Expression\func_;
 
 require_once "header.php"; ?>
 
+
     <div class="jumbotron">`
         <h1>Welcome You</h1>
         <p>A simple blog system that show case some usage of the
@@ -25,4 +25,14 @@ require_once "header.php"; ?>
     </div>
 
 <?php
+//foreach (\App\Models\Author::objects()->all() as $item) :
+//    echo $item . "<br>";
+//    foreach ($item->blog_set->all() as $blog):
+//        echo $blog . "<br>";
+//    endforeach;
+//endforeach;
+$users = \App\Models\Blog::objects()->exclude(['id__in'=>[1, 10, 11, 13, 15, 17]]);
+foreach ($users as $user) :
+    echo $user."<br>";
+endforeach;
 require_once "footer.php";

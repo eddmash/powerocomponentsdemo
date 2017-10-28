@@ -14,18 +14,18 @@ use Respect\Validation\Exceptions\MultipleException;
 require_once "../header.php"; ?>
 
 <?php
-$form = new \App\Forms\Entry();
+$form = new \App\Forms\User();
 if($_SERVER['REQUEST_METHOD'] == "POST"):
 
-    $form = new \App\Forms\Entry(['data'=>$_POST]);
+    $form = new \App\Forms\User(['data'=>$_POST]);
     if($form->isValid()):
         $form->save();
-        header('Location: entries.php');
+        header('Location: users.php');
     endif;
 endif;
 ?>
 
-    <h4>Create/Edit Authors</h4>
+    <h4>Create/Edit User</h4>
     <form method="post">
         <?=$form;?>
         <input type="submit" value="submit" class="btn btn-primary">

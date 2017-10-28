@@ -9,10 +9,9 @@
  * file that was distributed with this source code.
  */
 require_once "../header.php"; ?>
-
+<h4 class="text-info">Performs select related, check the toolbar to see the queries perfomed</h4>
 <?php
-
-$entries = \App\Models\Entry::objects()->all();
+$entries = \App\Models\Entry::objects()->selectRelated(['blog'])->all();
 ?>
     <h4>
         List of Entries</h4>
