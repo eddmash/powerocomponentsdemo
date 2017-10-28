@@ -13,7 +13,7 @@ require_once "../header.php"; ?>
     <h4 class="text-info">check the toolbar to see the queries perfomed</h4>
 <?php
 
-$authors = \App\Models\Author::objects()->all();
+$authors = \App\Models\Author::objects()->selectRelated(['user'])->all();
 ?>
     <h4>
         List of Authors</h4>

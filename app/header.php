@@ -17,7 +17,7 @@ define("APPPATH", BASEPATH . "app" . DIRECTORY_SEPARATOR);
 
 // register exception and error handler
 $whoops = new \Whoops\Run;
-$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
+$whoops->pushHandler(new \Whoops\Handler\PlainTextHandler());
 $whoops->register();
 
 // Load the ORM
@@ -70,7 +70,7 @@ $debugger->getDebugBar()["messages"]->addMessage("Welcome to the powerorm ecosys
                         </span></a></li>
                 <li class="active"><a href="/app/admin/authors.php">Authors <span class="sr-only">(current)
                         </span></a></li>
-                <li><a href="/app/admin/entries.php">Articles</a></li>
+                <li><a href="/app/admin/blogs.php">Blog</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

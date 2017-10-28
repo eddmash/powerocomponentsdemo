@@ -28,13 +28,15 @@ require_once "../header.php"; ?>
     <h4 class="code">Simple filter exactly one returned</h4>
 <?php
 try {
-    $author = Author::objects()->get(["email__icontains" => "an"]);
-    Helpers::beginDumpSQl(Author::objects()->filter(["email__icontains" => "an"])->getSql(),
-        'Author::objects()->get(["email__icontains" => "an"])');
+    $author = Author::objects()->get(["id" => 2]);
+    Helpers::beginDumpSQl(Author::objects()->filter(["id" => 2])->getSql(),
+        'Author::objects()->get(["id" => "2"])');
     Helpers::dumpString($author);
     Helpers::endDumpSql();
 } catch (ObjectDoesNotExist $doesNotExist) {
     Helpers::dumpString("ObjectDoesNotExist raised ");
+}catch (MultipleObjectsReturned $doesNotExist) {
+    Helpers::dumpString("MultipleObjectsReturned raised ");
 }
 ?>
     <h4 class="code">Simple filter Multiples returned</h4>
@@ -80,7 +82,9 @@ try {
 <?php
 $author = Author::objects()->filter(["email__icontains" => "al"]);
 $users = Entry::objects()->filter(['authors' => $author]);
-Helpers::beginDumpSQl($users->getSql(), 'Entry::objects()->filter(["authors" => Author::objects()->filter(["email__icontains" => "a"])])');
+Helpers::beginDumpSQl($users->getSql(), 'Entry::objects()->filter([
+"authors" => Author::objects()->filter(["email__icontains" => "a"])
+])');
 foreach ($users as $user) :
     Helpers::dumpString($user);
 endforeach;
@@ -99,7 +103,7 @@ Helpers::endDumpSql();
 //?>
 
 <!---->
-<!--    <h4 class="code">Filter using WHERE OR</h4>-->
+    <h4 class="code">Filter using WHERE OR</h4>
 <?php
 $users = Blog::objects()->filter(not_(['id' => 1])->or_(['name__icontains' => 'se']));
 Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->filter(not_(['id' => 1])->or_(['name__icontains' => 'se']))");

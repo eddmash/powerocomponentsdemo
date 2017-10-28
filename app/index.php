@@ -21,7 +21,14 @@ require_once "header.php"; ?>
         <h1>Welcome You</h1>
         <p>A simple blog system that show case some usage of the
             <strong>powerorm</strong> and <strong>powerform</strong> components</p>
-        <p>you can also use powerormfaker to generate data if your lazy</p>
+
+        <p>
+            You can also use powerormfaker to generate data if your lazy.
+            on the comand line just run
+            <small><code>vendor/bin/pmanager generatedata</code></small>
+        </p>
+
+        <p>View Queries performed on the toolbar at the bottom of the page.</p>
     </div>
 
 <?php

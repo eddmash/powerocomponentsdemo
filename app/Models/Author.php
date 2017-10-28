@@ -13,8 +13,10 @@ namespace App\Models;
 
 
 use Eddmash\PowerOrm\Model\Model;
+use Eddmash\PowerOrmFaker\FakeableInterface;
+use Faker\Generator;
 
-class Author extends Model
+class Author extends Model implements FakeableInterface
 {
 
 
@@ -28,4 +30,12 @@ class Author extends Model
     }
 
 
+    public function registerFormatter(Generator $generator)
+    {
+        return [
+            "name"=>function ($faker, $model){
+                return $faker->firstName." ".$faker->lastName;
+            }
+        ];
+    }
 }

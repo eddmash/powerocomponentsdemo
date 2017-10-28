@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Eddmash\PowerOrm\Model\Model;
+use Eddmash\PowerOrmFaker\FakeableInterface;
+use Faker\Generator;
 
 /**
  * Class Entry
  */
-class Entry extends Model
+class Entry extends Model implements FakeableInterface
 {
     private function unboundFields()
     {
@@ -24,4 +26,15 @@ class Entry extends Model
         ];
     }
 
+    public function registerFormatter(Generator $generator)
+    {
+        return [
+            "headline"=>function ($faker, $model){
+                return $faker->country;
+            },
+            "blog_text"=>function ($faker, $model){
+                return $faker->realText(150, 2);
+            }
+        ];
+    }
 }

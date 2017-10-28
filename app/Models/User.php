@@ -30,8 +30,8 @@ class User extends Model implements FakeableInterface
     public function registerFormatter(Generator $generator)
     {
         return [
-            "age" => function ($generator, $object) {
-                return $generator->ipv4;
+            "age" => function ($faker, $object) {
+                return $faker->numberBetween(1,150);
             },
         ];
     }
