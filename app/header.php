@@ -66,9 +66,9 @@ $debugger->getDebugBar()["messages"]->addMessage("Welcome to the powerorm ecosys
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/app/admin/users.php">Users <span class="sr-only">(current)
+                <li class="active"><a href="/app/admin/users.php">Users <span class="sr-only">
                         </span></a></li>
-                <li class="active"><a href="/app/admin/authors.php">Authors <span class="sr-only">(current)
+                <li><a href="/app/admin/authors.php">Authors <span class="sr-only">(current)
                         </span></a></li>
                 <li><a href="/app/admin/blogs.php">Blog</a></li>
             </ul>
@@ -76,10 +76,11 @@ $debugger->getDebugBar()["messages"]->addMessage("Welcome to the powerorm ecosys
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">More Examples <span class="caret"></span></a>
+                       aria-expanded="false">Quering Examples <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/app/examples/filter.php">Filter</a></li>
                         <li><a href="/app/examples/m2m.php">Relationships</a></li>
+                        <li><a href="/app/examples/serialization.php">Serialization</a></li>
                     </ul>
                 </li>
             </ul>

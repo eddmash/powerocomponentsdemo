@@ -118,14 +118,14 @@ Helpers::endDumpSql();
 $users = Blog::objects()->filter(
     q_([
         "author" => Author::objects()->filter([
-            'user' => User::objects()->filter(['id' => 1])
+            'user' => User::objects()->filter(['id' => 5])
         ])
     ])
 );
 Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->filter(
     q_([
         'author' => Author::objects()->filter([
-            'user' => User::objects()->filter(['id' => 1])
+            'user' => User::objects()->filter(['id' => 5])
         ])
     ])
 )");
@@ -148,10 +148,7 @@ Helpers::endDumpSql();
     <h4 class="code">Results As Array and limit</h4>
 <?php
 $users = Blog::objects()->asArray()->limit(1,3);
-Helpers::beginDumpSQl($users->getSql(), "Blog::objects()
-    ->asArray(['id'], true, true)
-    ->filter(not_(['id__in'=>[10,8,9]]))
-");
+Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->asArray()->limit(1,3)");
 foreach ($users as $user) :
     Helpers::dumpArray($user);
 endforeach;
@@ -161,10 +158,7 @@ Helpers::endDumpSql();
     <h4 class="code">Results As Array values and limit</h4>
 <?php
 $users = Blog::objects()->asArray(['id', 'name'])->limit(1,3);
-Helpers::beginDumpSQl($users->getSql(), "Blog::objects()
-    ->asArray(['id'], true, true)
-    ->filter(not_(['id__in'=>[10,8,9]]))
-");
+Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->asArray(['id', 'name'])->limit(1,3)");
 foreach ($users as $user) :
     Helpers::dumpArray($user);
 endforeach;

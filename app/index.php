@@ -8,12 +8,9 @@
  * file that was distributed with this source code.
  */
 
-use function Eddmash\PowerOrm\Model\Query\Expression\q_;
-use function Eddmash\PowerOrm\Model\Query\Expression\or_;
-use function Eddmash\PowerOrm\Model\Query\Expression\not_;
-use function Eddmash\PowerOrm\Model\Query\Expression\f_;
-use function Eddmash\PowerOrm\Model\Query\Expression\count_;
-use function Eddmash\PowerOrm\Model\Query\Expression\func_;
+use App\Models\Entry;
+use Eddmash\PowerOrm\Serializer\Json;
+use Eddmash\PowerOrm\Serializer\SimpleObjectSerializer;
 
 require_once "header.php"; ?>
 
@@ -30,6 +27,7 @@ require_once "header.php"; ?>
 
         <p>View Queries performed on the toolbar at the bottom of the page.</p>
     </div>
+
 
 <?php
 require_once "footer.php";
