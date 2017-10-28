@@ -1,8 +1,13 @@
-DEMO APP DEMOSTRATING USING POWERORM, POWERFORM, POWERORMFAKER
---------------------------------------------------------------
+Demo application using powercomponents
+--------------------------------------
 
-This is a demo app that shows how to use powerom, powerormfaker, and powerform.
-It use not framework just a straight forward php example.
+This is a demo app that shows how to use 
+ - powerom - the orm
+ - powerormfaker - generate dummy data for the orm models
+ - powerform - create forms based on the orm models
+ - powerormdebugger - toolbar to get sqls statements run bt the orm.
+
+It does not use any frameworks just a straight forward php example for easier understanding.
 
 NOTE
 ----
@@ -44,7 +49,7 @@ The application use the builtin php server, to start using
 NOTE
 ----
 To create you own pages on this project you simple need to ensure you require
-- header.php  - responsible to initialization of the orm, toolbar and exception handler.
+- header.php  - responsible to initialization of the orm and exception handler.
 - footer.php  - display of the toolbar
 
 A simple page looks as below

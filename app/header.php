@@ -11,19 +11,25 @@
 $baseDir = dirname(dirname(__FILE__));
 require $baseDir . '/vendor/autoload.php';
 
+// define some constants for reuse
 define("BASEPATH", $baseDir . DIRECTORY_SEPARATOR);
 define("APPPATH", BASEPATH . "app" . DIRECTORY_SEPARATOR);
+
 // register exception and error handler
 $whoops = new \Whoops\Run;
-$whoops->pushHandler(new \Whoops\Handler\PlainTextHandler());
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
 $whoops->register();
 
-// load the orm
-$orm = \Eddmash\PowerOrm\Application::webRun(\App\Config\Powerorm::asArray());
+// Load the ORM
+$configs = \App\Config\Powerorm::asArray();
+$orm = \Eddmash\PowerOrm\Application::webRun($configs);
+
+// Get the debugger
+// the debug toolbar is invoked on the footer.php file
 
 /**@var $debugger \Eddmash\PowerOrmDebug\Debugger*/
 $debugger =$orm->debugger;
-$debugger->getDebugBar()["messages"]->addMessage("hello world!");
+$debugger->getDebugBar()["messages"]->addMessage("Welcome to the powerorm ecosystem");
 
 ?>
 <!doctype html>
