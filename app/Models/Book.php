@@ -25,6 +25,7 @@ class Book extends Model implements FakeableInterface
             "title" => Model::CharField(['maxLength' => 50]),
             "isbn" => Model::CharField(['maxLength' => 50]),
             "summary" => Model::CharField(['maxLength' => 50]),
+            "price" => Model::DecimalField(['maxDigits' => 50, 'decimalPlaces'=>2]),
         ];
     }
 

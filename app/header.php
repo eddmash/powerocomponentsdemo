@@ -81,6 +81,7 @@ $debugger->getDebugBar()["messages"]->addMessage("Welcome to the powerorm ecosys
                         <li><a href="/app/examples/filter.php">Filter</a></li>
                         <li><a href="/app/examples/m2m.php">Relationships</a></li>
                         <li><a href="/app/examples/serialization.php">Serialization</a></li>
+                        <li><a href="/app/examples/aggregations.php">Aggregations</a></li>
                     </ul>
                 </li>
             </ul>
