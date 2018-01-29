@@ -9,22 +9,20 @@
  */
 
 use App\Helpers;
-use function Eddmash\PowerOrm\Model\Query\Expression\q_;
-use function Eddmash\PowerOrm\Model\Query\Expression\or_;
-use function Eddmash\PowerOrm\Model\Query\Expression\not_;
-use function Eddmash\PowerOrm\Model\Query\Expression\f_;
-use function Eddmash\PowerOrm\Model\Query\Expression\count_;
-use function Eddmash\PowerOrm\Model\Query\Expression\func_;
 
 require_once "../header.php"; ?>
     <h4 class="code">Related Records</h4>
 <?php
-$users = \App\Models\Blog::objects()->exclude(['id__in'=>[1, 10, 11, 13, 15, 17]]);
+$users = \App\Models\Blog::objects()
+                         ->exclude(['id__in' => [1, 10, 11, 13, 15, 17]])->limit(0, 5);
 
 
-Helpers::beginDumpSQl($users->getSql(),'\App\Models\Blog::objects()
+Helpers::beginDumpSQl(
+    $users->getSql(),
+    '\App\Models\Blog::objects()
     ->selectRelated(["author"])
-    ->exclude(["id__in"=>[1, 10, 11, 13, 15, 17]])');
+    ->exclude(["id__in"=>[1, 10, 11, 13, 15, 17]])->limit(0,5)'
+);
 foreach ($users as $user) :
     Helpers::dumpString($user." was written by ".$user->author);
 endforeach;
@@ -32,12 +30,16 @@ Helpers::endDumpSql();
 ?>
     <h4 class="code">Using select Related (EAGER FETCH)</h4>
 <?php
-$users = \App\Models\Blog::objects()->selectRelated(['author'])->exclude(['id__in'=>[1, 10, 11, 13, 15, 17]]);
+$users = \App\Models\Blog::objects()->selectRelated(['author'])
+                         ->exclude(['id__in' => [1, 10, 11, 13, 15, 17]])->limit(0, 5);
 
 
-Helpers::beginDumpSQl($users->getSql(),'\App\Models\Blog::objects()
+Helpers::beginDumpSQl(
+    $users->getSql(),
+    '\App\Models\Blog::objects()
     ->selectRelated(["author"])
-    ->exclude(["id__in"=>[1, 10, 11, 13, 15, 17]])');
+    ->exclude(["id__in"=>[1, 10, 11, 13, 15, 17]])->limit(0,5)'
+);
 foreach ($users as $user) :
     Helpers::dumpString($user." was written by ".$user->author);
 endforeach;
@@ -48,11 +50,17 @@ Helpers::endDumpSql();
 
 $entry = \App\Models\Entry::objects()->get(['id' => 1]);
 
-Helpers::beginDumpSQl(\App\Models\Entry::objects()->filter(['id' => 1])->getSql(),
-    '$entry =\App\Models\Entry::objects()->get(["id"=>6])');
+Helpers::beginDumpSQl(
+    \App\Models\Entry::objects()->filter(['id' => 1])->getSql(),
+    '$entry =\App\Models\Entry::objects()->get(["id"=>6])'
+);
 Helpers::dumpString($entry);
-Helpers::beginDumpSQl($entry->authors->all()->getSql(), '$entry->authors->all()', false);
-foreach ($entry->authors->all() as $entry):
+Helpers::beginDumpSQl(
+    $entry->authors->all()->getSql(),
+    '$entry->authors->all()->limit(0,5)',
+    false
+);
+foreach ($entry->authors->all()->limit(0, 5) as $entry):
     Helpers::dumpString($entry);
 endforeach;
 Helpers::endDumpSql();
@@ -61,12 +69,18 @@ Helpers::endDumpSql();
 <?php
 
 $author = \App\Models\Author::objects()->get(['id' => 1]);
-Helpers::beginDumpSQl(\App\Models\Author::objects()->filter(['id' => 1])->getSql(),
-    '$author = \App\Models\Author::objects()->get(["id"=>6])');
+Helpers::beginDumpSQl(
+    \App\Models\Author::objects()->filter(['id' => 1])->getSql(),
+    '$author = \App\Models\Author::objects()->get(["id"=>6])'
+);
 
 Helpers::dumpString($author);
-Helpers::beginDumpSQl($author->entry_set->all()->getSql(), '$author->entry_set->all()', false);
-foreach ($author->entry_set->all() as $entry):
+Helpers::beginDumpSQl(
+    $author->entry_set->all()->getSql(),
+    '$author->entry_set->all()->limit(0,5)',
+    false
+);
+foreach ($author->entry_set->all()->limit(0, 5) as $entry):
     Helpers::dumpString($entry);
 endforeach;
 Helpers::endDumpSql();

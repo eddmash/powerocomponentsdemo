@@ -11,7 +11,7 @@ use Faker\Generator;
  */
 class Entry extends Model implements FakeableInterface
 {
-    private function unboundFields()
+    public function unboundFields()
     {
         return [
             'blog'        => Model::ForeignKey(['to' => Blog::class]),

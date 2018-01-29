@@ -1,0 +1,10 @@
+<?php
+$php  = PHP_BINARY;  // command to call PHP
+
+
+//$options = getopt(null, ['host:', 'port:']);
+
+$host = 'localhost';
+$port = '8080';
+
+passthru("{$php} -S {$host}:{$port}");

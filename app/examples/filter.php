@@ -15,12 +15,8 @@ use App\Models\Entry;
 use App\Models\User;
 use Eddmash\PowerOrm\Exception\MultipleObjectsReturned;
 use Eddmash\PowerOrm\Exception\ObjectDoesNotExist;
-use function Eddmash\PowerOrm\Model\Query\Expression\q_;
-use function Eddmash\PowerOrm\Model\Query\Expression\or_;
 use function Eddmash\PowerOrm\Model\Query\Expression\not_;
-use function Eddmash\PowerOrm\Model\Query\Expression\f_;
-use function Eddmash\PowerOrm\Model\Query\Expression\count_;
-use function Eddmash\PowerOrm\Model\Query\Expression\func_;
+use function Eddmash\PowerOrm\Model\Query\Expression\q_;
 
 require_once "../header.php"; ?>
 
@@ -29,20 +25,22 @@ require_once "../header.php"; ?>
 <?php
 try {
     $author = Author::objects()->get(["id" => 2]);
-    Helpers::beginDumpSQl(Author::objects()->filter(["id" => 2])->getSql(),
-        'Author::objects()->get(["id" => "2"])');
+    Helpers::beginDumpSQl(
+        Author::objects()->filter(["id" => 2])->getSql(),
+        'Author::objects()->get(["id" => "2"])'
+    );
     Helpers::dumpString($author);
     Helpers::endDumpSql();
 } catch (ObjectDoesNotExist $doesNotExist) {
     Helpers::dumpString("ObjectDoesNotExist raised ");
-}catch (MultipleObjectsReturned $doesNotExist) {
+} catch (MultipleObjectsReturned $doesNotExist) {
     Helpers::dumpString("MultipleObjectsReturned raised ");
 }
 ?>
     <h4 class="code">Simple filter Multiples returned</h4>
 <?php
-$authors = Blog::objects()->filter(['id' => 1]);
-Helpers::beginDumpSQl($authors->getSql(), "Blog::objects()->filter(['id' => 1])");
+$authors = Blog::objects()->filter(['name__icontains' => 'Boyle']);
+Helpers::beginDumpSQl($authors->getSql(), "Blog::objects()->filter(['name__icontains' =>'Boyle'])");
 
 foreach ($authors as $author) :
     Helpers::dumpString($author);
@@ -52,8 +50,8 @@ Helpers::endDumpSql();
 
     <h4 class="code">Relation filter using simple value</h4>
 <?php
-$users = Blog::objects()->filter(['author__email__icontains' => "a"]);
-Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->filter(['author__email__icontains' => 'a'])");
+$users = Blog::objects()->filter(['author__email__icontains' => "heathcote"]);
+Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->filter(['author__email__icontains' => 'heathcote'])");
 foreach ($users as $user) :
     Helpers::dumpString($user);
 endforeach;
@@ -64,9 +62,12 @@ Helpers::endDumpSql();
 <?php
 try {
     $author = Author::objects()->get(["pk" => 1]);
-    $users = Entry::objects()->filter(['authors' => $author]);
-
-    Helpers::beginDumpSQl($users->getSql(), 'Entry::objects()->filter(["authors" => Author::objects()->get(["pk" => 1])])');
+    $users = Entry::objects()->filter(['authors' => $author])->limit(0, 5);
+    
+    Helpers::beginDumpSQl(
+        $users->getSql(),
+        'Entry::objects()->filter(["authors" => Author::objects()->get(["pk" => 1])])->limit(0,5)'
+    );
     foreach ($users as $user) :
         Helpers::dumpString($user);
     endforeach;
@@ -80,33 +81,43 @@ try {
 
     <h4 class="code">Relation filter using Queryset</h4>
 <?php
-$author = Author::objects()->filter(["email__icontains" => "al"]);
-$users = Entry::objects()->filter(['authors' => $author]);
-Helpers::beginDumpSQl($users->getSql(), 'Entry::objects()->filter([
-"authors" => Author::objects()->filter(["email__icontains" => "a"])
-])');
-foreach ($users as $user) :
-    Helpers::dumpString($user);
-endforeach;
-Helpers::endDumpSql();
+try {
+    $author = Author::objects()->filter(["email__icontains" => "heathcote"]);
+    $users = Entry::objects()->filter(['authors' => $author])->limit(0, 5);
+    Helpers::beginDumpSQl(
+        $users->getSql(),
+        'Entry::objects()->filter(['.
+        '"authors" => Author::objects()->filter(["email__icontains" => "heathcote"])->limit(0,5)'.
+        '])'
+    );
+    foreach ($users as $user) :
+        Helpers::dumpString($user);
+    endforeach;
+    Helpers::endDumpSql();
+} catch (Exception $e) {
+
+}
 ?>
 
     <h4 class="code">Filter using WHERE NOT</h4>
 <?php
-$users = Blog::objects()->filter(not_(['id' => 1]));
+$users = Blog::objects()->filter(not_(['id' => 1]))->limit(0, 5);
 
-Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->filter(not_(['id' => 1]))");
+Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->filter(not_(['id' => 1]))->limit(0, 5)");
 foreach ($users as $user) :
     Helpers::dumpString($user);
 endforeach;
 Helpers::endDumpSql();
 //?>
 
-<!---->
+    <!---->
     <h4 class="code">Filter using WHERE OR</h4>
 <?php
-$users = Blog::objects()->filter(not_(['id' => 1])->or_(['name__icontains' => 'se']));
-Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->filter(not_(['id' => 1])->or_(['name__icontains' => 'se']))");
+$users = Blog::objects()->filter(not_(['id' => 1])->or_(['name__icontains' => 'se']))->limit(0, 5);
+Helpers::beginDumpSQl(
+    $users->getSql(),
+    "Blog::objects()->filter(not_(['id' => 1])->or_(['name__icontains' => 'se']))->limit(0, 5)"
+);
 foreach ($users as $user) :
     Helpers::dumpString($user);
 endforeach;
@@ -116,25 +127,32 @@ Helpers::endDumpSql();
     <h4 class="code">Filter using complex q</h4>
 <?php
 $users = Blog::objects()->filter(
-    q_([
-        "author" => Author::objects()->filter([
-            'user' => User::objects()->filter(['id' => 5])
-        ])
-    ])
+    q_(
+        [
+            "author" => Author::objects()->filter(
+                [
+                    'user' => User::objects()->filter(['id' => 5]),
+                ]
+            ),
+        ]
+    )
 );
-Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->filter(
+Helpers::beginDumpSQl(
+    $users->getSql(),
+    "Blog::objects()->filter(
     q_([
         'author' => Author::objects()->filter([
             'user' => User::objects()->filter(['id' => 5])
         ])
     ])
-)");
+)"
+);
 foreach ($users as $user) :
     Helpers::dumpString($user);
 endforeach;
 Helpers::endDumpSql();
 ?>
-<!--    <h4 class="code">Filter spanning relationships</h4>-->
+    <!--    <h4 class="code">Filter spanning relationships</h4>-->
 <?php
 $users = Blog::objects()->filter(["author__user__username__icontains" => "mill"]);
 Helpers::beginDumpSQl($users->getSql(), 'Blog::objects()->filter(["author__user__username__icontains" => "mill"])');
@@ -147,7 +165,7 @@ Helpers::endDumpSql();
 
     <h4 class="code">Results As Array and limit</h4>
 <?php
-$users = Blog::objects()->asArray()->limit(1,3);
+$users = Blog::objects()->asArray()->limit(1, 3);
 Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->asArray()->limit(1,3)");
 foreach ($users as $user) :
     Helpers::dumpArray($user);
@@ -157,7 +175,7 @@ Helpers::endDumpSql();
 
     <h4 class="code">Results As Array values and limit</h4>
 <?php
-$users = Blog::objects()->asArray(['id', 'name'])->limit(1,3);
+$users = Blog::objects()->asArray(['id', 'name'])->limit(1, 3);
 Helpers::beginDumpSQl($users->getSql(), "Blog::objects()->asArray(['id', 'name'])->limit(1,3)");
 foreach ($users as $user) :
     Helpers::dumpArray($user);
@@ -167,11 +185,14 @@ Helpers::endDumpSql();
 
     <h4 class="code">Results As Array flat values and filter with not</h4>
 <?php
-$users = Blog::objects()->asArray(['id'], true, true)->filter(not_(['id__in'=>[10,8,9]]));
-Helpers::beginDumpSQl($users->getSql(), "Blog::objects()
+$users = Blog::objects()->asArray(['id'], true, true)->filter(not_(['id__in' => [10, 8, 9]]))->limit(0, 5);
+Helpers::beginDumpSQl(
+    $users->getSql(),
+    "Blog::objects()
     ->asArray(['id'], true, true)
-    ->filter(not_(['id__in'=>[10,8,9]]))
-");
+    ->filter(not_(['id__in'=>[10,8,9]]))->limit(0, 5)
+"
+);
 $results = [];
 foreach ($users as $user) :
     $results[] = $user;

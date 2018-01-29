@@ -1,76 +1,162 @@
 <?php
 
-/**Migration file generated at 11:10:50 on Fri, 27th October 2017 by PowerOrm(1.1.0-pre-alpha)*/
+/**Migration file generated at 07:01:19 on Fri, 26th January 2018 by PowerOrm(1.1.0-alpha)*/
 
 namespace App\Migrations;
 
 use Eddmash\PowerOrm\Migration\Migration;
-use Eddmash\PowerOrm\Migration\Operation\Model as modelOperation;
-use Eddmash\PowerOrm\Model\Field as modelField;
-use Eddmash\PowerOrm\Migration\Operation\Field as fieldOperation;
+use Eddmash\PowerOrm\Migration\Operation\Model as ModelOps;
+use Eddmash\PowerOrm\Model\Model;
+use Eddmash\PowerOrm\Migration\Operation\Field as FieldOps;
 
 class m0001_Initial extends Migration{
 
 	public function getDependency(){
-		return [  ];
+		return [
+		
+
+		];
 	}
 
 	public function getOperations(){
 		return [
-			modelOperation\CreateModel::createObject(
-				[
-					'name'=> 'App\Models\Author',
-					'fields'=>[ 
-						'name'=> modelField\CharField::createObject(['maxLength'=> 200]),
-						'email'=> modelField\EmailField::createObject(['maxLength'=> 254]),
-						'id'=> modelField\AutoField::createObject(['primaryKey'=> true, 'autoCreated'=> true]),
-					],
-				]
-			),
-			modelOperation\CreateModel::createObject(
-				[
-					'name'=> 'App\Models\Blog',
-					'fields'=>[ 
-						'name'=> modelField\CharField::createObject(['maxLength'=> 100]),
-						'tagline'=> modelField\TextField::createObject([]),
-						'id'=> modelField\AutoField::createObject(['primaryKey'=> true, 'autoCreated'=> true]),
-						'author'=> modelField\ForeignKey::createObject(['to'=> 'App\Models\Author']),
-						'created_by'=> modelField\ForeignKey::createObject(['to'=> 'App\Models\Author', 'dbIndex'=> false]),
-					],
-				]
-			),
-			modelOperation\CreateModel::createObject(
+			ModelOps\CreateModel::createObject(
 				[
 					'name'=> 'App\Models\User',
 					'fields'=>[ 
-						'username'=> modelField\CharField::createObject(['maxLength'=> 50]),
-						'age'=> modelField\CharField::createObject(['maxLength'=> 50]),
-						'id'=> modelField\AutoField::createObject(['primaryKey'=> true, 'autoCreated'=> true]),
+						'username'=> Model::CharField([
+							'maxLength'=> 50,
+						]),
+						'age'=> Model::CharField([
+							'maxLength'=> 50,
+						]),
+						'id'=> Model::AutoField([
+							'primaryKey'=> true,
+							'autoCreated'=> true,
+						]),
 					],
 				]
 			),
-			modelOperation\CreateModel::createObject(
+			ModelOps\CreateModel::createObject(
 				[
 					'name'=> 'App\Models\Entry',
 					'fields'=>[ 
-						'headline'=> modelField\CharField::createObject(['maxLength'=> 255]),
-						'blog_text'=> modelField\TextField::createObject([]),
-						'n_comments'=> modelField\IntegerField::createObject([]),
-						'n_pingbacks'=> modelField\IntegerField::createObject([]),
-						'ratings'=> modelField\IntegerField::createObject([]),
-						'pub_date'=> modelField\DateField::createObject([]),
-						'mod_date'=> modelField\DateField::createObject([]),
-						'id'=> modelField\AutoField::createObject(['primaryKey'=> true, 'autoCreated'=> true]),
-						'blog'=> modelField\ForeignKey::createObject(['to'=> 'App\Models\Blog']),
-						'authors'=> modelField\ManyToManyField::createObject(['to'=> 'App\Models\Author']),
+						'headline'=> Model::CharField([
+							'maxLength'=> 255,
+						]),
+						'blog_text'=> Model::TextField([
+						]),
+						'n_comments'=> Model::IntegerField([
+						]),
+						'n_pingbacks'=> Model::IntegerField([
+						]),
+						'ratings'=> Model::IntegerField([
+						]),
+						'pub_date'=> Model::DateField([
+						]),
+						'mod_date'=> Model::DateField([
+						]),
+						'id'=> Model::AutoField([
+							'primaryKey'=> true,
+							'autoCreated'=> true,
+						]),
 					],
 				]
 			),
-			fieldOperation\AddField::createObject(
+			ModelOps\CreateModel::createObject(
 				[
-					'modelName'=> 'App\Models\Author',
-					'name'=> 'user',
-					'field'=> modelField\OneToOneField::createObject(['null'=> true, 'to'=> 'App\Models\User']),
+					'name'=> 'App\Models\Book',
+					'fields'=>[ 
+						'title'=> Model::CharField([
+							'maxLength'=> 50,
+						]),
+						'isbn'=> Model::CharField([
+							'maxLength'=> 50,
+						]),
+						'summary'=> Model::CharField([
+							'maxLength'=> 50,
+						]),
+						'price'=> Model::DecimalField([
+						]),
+						'id'=> Model::AutoField([
+							'primaryKey'=> true,
+							'autoCreated'=> true,
+						]),
+					],
+				]
+			),
+			ModelOps\CreateModel::createObject(
+				[
+					'name'=> 'App\Models\Blog',
+					'fields'=>[ 
+						'name'=> Model::CharField([
+							'maxLength'=> 100,
+						]),
+						'tagline'=> Model::TextField([
+						]),
+						'id'=> Model::AutoField([
+							'primaryKey'=> true,
+							'autoCreated'=> true,
+						]),
+					],
+				]
+			),
+			ModelOps\CreateModel::createObject(
+				[
+					'name'=> 'App\Models\Author',
+					'fields'=>[ 
+						'name'=> Model::CharField([
+							'maxLength'=> 200,
+						]),
+						'email'=> Model::EmailField([
+							'maxLength'=> 254,
+						]),
+						'id'=> Model::AutoField([
+							'primaryKey'=> true,
+							'autoCreated'=> true,
+						]),
+						'user'=> Model::OneToOneField([
+							'null'=> true,
+							'to'=> 'App\Models\User',
+						]),
+					],
+				]
+			),
+			FieldOps\AddField::createObject(
+				[
+					'modelName'=> 'App\Models\Blog',
+					'name'=> 'author',
+					'field'=> Model::ForeignKey([
+						'to'=> 'App\Models\Author',
+					]),
+				]
+			),
+			FieldOps\AddField::createObject(
+				[
+					'modelName'=> 'App\Models\Blog',
+					'name'=> 'created_by',
+					'field'=> Model::ForeignKey([
+						'to'=> 'App\Models\Author',
+						'dbIndex'=> false,
+					]),
+				]
+			),
+			FieldOps\AddField::createObject(
+				[
+					'modelName'=> 'App\Models\Entry',
+					'name'=> 'blog',
+					'field'=> Model::ForeignKey([
+						'to'=> 'App\Models\Blog',
+					]),
+				]
+			),
+			FieldOps\AddField::createObject(
+				[
+					'modelName'=> 'App\Models\Entry',
+					'name'=> 'authors',
+					'field'=> Model::ManyToManyField([
+						'to'=> 'App\Models\Author',
+					]),
 				]
 			),
 		] ;

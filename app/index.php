@@ -8,11 +8,19 @@
  * file that was distributed with this source code.
  */
 
-use App\Models\Entry;
-use Eddmash\PowerOrm\Serializer\Json;
-use Eddmash\PowerOrm\Serializer\SimpleObjectSerializer;
+require_once "header.php";
 
-require_once "header.php"; ?>
+//dump(\App\Models\Blog::objects()->get(['id' => 1])->author);
+//dump(\App\Models\User::objects()->get(['id' => 1])->blog_set);
+//$sum = Entry::objects()->filter(['n_pingbacks__gt'=>f_("ratings")]);
+//dump(
+//
+//);
+
+dump(\App\Models\Blog::objects()->get(['pk' => 1])->toArray());
+
+
+?>
 
     <div class="jumbotron">`
         <h1>Welcome You</h1>
@@ -20,9 +28,10 @@ require_once "header.php"; ?>
             <strong>powerorm</strong> and <strong>powerform</strong> components</p>
 
         <p>
-            You can also use powerormfaker to generate data if your lazy.
-            on the comand line just run
-            <small><code>vendor/bin/pmanager generatedata</code></small>
+            To use the same data i'm using for this examples on your database
+            run this command to have faker generate the exact data
+            <small><code>php pmanager faker:generatedata -r 50 -s 123456</code>
+            </small>
         </p>
 
         <p>View Queries performed on the toolbar at the bottom of the page.</p>

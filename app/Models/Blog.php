@@ -18,17 +18,23 @@ use Faker\Generator;
 
 class Blog extends Model implements FakeableInterface
 {
-
-    private function unboundFields()
+    
+    public function unboundFields()
     {
         return [
-            'name'    => Model::CharField(['maxLength' => 100]),
+            'name' => Model::CharField(['maxLength' => 100]),
             'tagline' => Model::TextField(),
-            'author'  => Model::ForeignKey(['to' => Author::class]),
-            'created_by'  => Model::ForeignKey(['to' => Author::class, 'dbIndex'=>false, "relatedName"=>"created_by_"])
+            'author' => Model::ForeignKey(['to' => Author::class]),
+            'created_by' => Model::ForeignKey(
+                [
+                    'to' => Author::class,
+                    'dbIndex' => false,
+                    "relatedName" => "created_by_",
+                ]
+            ),
         ];
     }
-
+    
     public function registerFormatter(Generator $generator)
     {
         return [

@@ -12,10 +12,13 @@
 namespace App\Config;
 
 
-use DebugBar\StandardDebugBar;
+use App\App;
+use App\Signal\SignalManager;
+use Eddmash\PhpGis\PhpGis;
 use Eddmash\PowerOrm\BaseOrm;
-use Eddmash\PowerOrmDebug\Debugger;
-use Eddmash\PowerOrmFaker\Generatedata;
+use Eddmash\PowerOrmDebug\Toolbar;
+use Eddmash\PowerOrmFaker\Faker;
+use Gis\Gis;
 
 class Powerorm
 {
@@ -29,29 +32,20 @@ class Powerorm
                 'password' => 'root1.',
                 'driver' => 'pdo_mysql',
             ],
-            'migrations' => [
-                'path' => sprintf('%1$s%2$sMigrations%2$s', dirname(__DIR__), DIRECTORY_SEPARATOR),
-            ],
-            'models' => [
-                'path' => sprintf('%1$s%2$sModels%2$s', dirname(__DIR__), DIRECTORY_SEPARATOR),
-                'namespace' => 'App\Models\\',
-            ],
             'dbPrefix' => 'demo_',
             'charset' => 'utf-8',
             'timezone' => 'Africa/Nairobi',
-            'commands' =>[
-                Generatedata::class
-            ],
             'components' => [
-                "debugger" => function (BaseOrm $orm) {
-                    $debugger = new Debugger($orm);
-                    // if debugger css and js are not loading correctly you
-                    // can set where the debuger shouw fetch them here
-                    //$debugger->setStaticBaseUrl("/assets/");
-                    $debugger->setDebugBar(new StandardDebugBar());
-                    return $debugger;
-                },
-            ]
+                App::class,
+//                Gis::class,
+//                PhpGis::class,
+                Toolbar::class,
+                Faker::class,
+            ],
+            'signalManager' => function (BaseOrm $orm) {
+
+                return new SignalManager();
+            },
         ];
 
     }

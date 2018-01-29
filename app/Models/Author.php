@@ -16,26 +16,27 @@ use Eddmash\PowerOrm\Model\Model;
 use Eddmash\PowerOrmFaker\FakeableInterface;
 use Faker\Generator;
 
-class Author extends Model implements FakeableInterface
+class Author  extends Model implements FakeableInterface
 {
-
-
-    private function unboundFields()
+    
+    public function unboundFields()
     {
         return [
             'name'  => Model::CharField(['maxLength' => 200]),
             'email' => Model::EmailField(),
             'user'  => Model::OneToOneField(['to' => User::class, 'null' => true]),
+//            'entries'=>Model::HasManyField(['to'=>User::class, 'toField'=>'authors']),
+//            'blogs'=>Model::HasManyField(['to'=>Blog::class, 'toField'=>'author'])
         ];
     }
-
-
+    
+    
     public function registerFormatter(Generator $generator)
     {
         return [
-            "name"=>function ($faker, $model){
+            "name" => function ($faker, $model) {
                 return $faker->firstName." ".$faker->lastName;
-            }
+            },
         ];
     }
 }

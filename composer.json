@@ -34,12 +34,36 @@
         "eddmash/powerormfaker": "@dev",
         "eddmash/powerormdebug": "@dev",
         "psy/psysh": "@stable",
-        "eddmash/powerorm": "1.1.0.x-dev"
+        "eddmash/powerorm": "1.1.0.x-dev",
+        "symfony/event-dispatcher": "^3.3",
+        "eddmash/phpgis": "dev-master"
     },
-
+    "repositories": [
+        {
+            "type": "path",
+            "url":  "../eddmash/phpgis"
+        },
+        {
+            "type": "path",
+            "url":  "../eddmash/powerform"
+        },
+        {
+            "type": "path",
+            "url":  "../eddmash/powerorm"
+        },
+        {
+            "type": "path",
+            "url":  "../eddmash/powerormdebug"
+        },
+        {
+            "type": "path",
+            "url":  "../eddmash/powerormfaker"
+        }
+    ],
   "autoload": {
     "psr-4": {
-      "App\\": "app/"
+      "App\\": "app/",
+      "Gis\\": "gis/"
     }
   }
 }

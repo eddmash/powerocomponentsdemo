@@ -16,8 +16,10 @@ require_once "../header.php"; ?>
 <h4 class="code">Serialize a Queryset</h4>
 <?php
 $queryset = \App\Models\Entry::objects()->all()->limit(null, 2);
-$json = Json::serialize($queryset);
+$json = json_encode($queryset);
 Helpers::beginDumpSQl($queryset->getSql(), '$queryset=\App\Models\Blog::objects()->all()->limit(null, 2)');
+Helpers::beginDumpSQl('', 'json_encode($queryset)', false);
+Helpers::dumpString($json);
 Helpers::beginDumpSQl('', 'Json::serialize($queryset)', false);
 Helpers::dumpString($json);
 Helpers::endDumpSql();?>
@@ -34,9 +36,11 @@ Helpers::endDumpSql();?>
 <h4 class="code">Serialize a Object</h4>
 <?php
 $model = \App\Models\Entry::objects()->get(['pk'=>1]);
-$json = Json::serialize($model);
+$json = json_encode($model);
 Helpers::beginDumpSQl(\App\Models\Entry::objects()->filter(['pk'=>1])->getSql(),
     '$model = \App\Models\Entry::objects()->get(["pk"=>1])');
+Helpers::beginDumpSQl('', 'json_encode($model)', false);
+Helpers::dumpString($json);
 Helpers::beginDumpSQl('', 'Json::serialize($model)', false);
 Helpers::dumpString($json);
 Helpers::endDumpSql();?>
@@ -45,7 +49,7 @@ Helpers::endDumpSql();?>
 <h4 class="code">Serialize Object with only a few Fields</h4>
 <?php
 $model = \App\Models\Entry::objects()->get(['pk'=>1]);
-$json = Json::serialize($model);
+//$json = json_encode($model);
 $json = Json::serialize($model, array("headline", "ratings", "authors"));
 Helpers::beginDumpSQl(\App\Models\Entry::objects()->filter(['pk'=>1])->getSql(),
     '$model = \App\Models\Entry::objects()->get(["pk"=>1])');

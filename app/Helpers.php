@@ -14,27 +14,30 @@ namespace App;
 
 class Helpers
 {
-    public static function beginDumpSQl($sql='', $qset='', $open=true)
+    public static function beginDumpSQl($sql = '', $qset = '', $open = true)
     {
-        if($open):
+        if ($open):
             echo "<div class='dump-sql'>";
         endif;
-        echo sprintf("<small class='qset'>>> %s</small><small class='sql'>%s</small>",
-            $qset, $sql);
+        echo sprintf(
+            "<small class='qset'>>> %s</small><small class='sql'>%s</small>",
+            $qset,
+            $sql
+        );
     }
-
-    public static function dumpString($sql='')
+    
+    public static function dumpString($sql = '')
     {
         echo sprintf("<small>%s</small>", $sql);
     }
-
-    public static function dumpArray($sql='')
+    
+    public static function dumpArray($sql = '')
     {
         echo "<small>";
         print_r($sql);
         echo "</small>";
     }
-
+    
     public static function endDumpSql()
     {
         echo "</div>";

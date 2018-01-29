@@ -8,7 +8,7 @@ This is a demo app that shows how to use
  - [powerform](http://powerorm.readthedocs.io/en/1.1.0/) - create forms based on the orm models
  - [powerormdebugger](http://powerorm.readthedocs.io/en/1.1.0/) - toolbar to get sqls statements run bt the orm.
 
-It does not use any frameworks just a straight forward php example for easier understanding.
+It does not use any frameworks just a straight plain php project for easier understanding.
 
 NOTE
 ----
@@ -30,14 +30,23 @@ This downloads all the libraries this application depends on.
 Update config
 -------------
 All configs are found under `app/Config/powerorm.php`.
-create database called `tester` and update the database configurations to point to your database.
+create database called `tester` and update the database configurations to work with your database.
 
 Run migrations
 --------------
 Once the database is created you will have to create tables that this app uses.
 To do this simple run 
 
-``vendor/bin/pmanager migrate``
+``php pmanager migrate``
+
+Generate data
+--------------
+
+To use the exact data i'm using for this examples on your database. 
+
+Run this command to have powerormfaker generate the exact data.
+
+``php pmanager faker:generatedata -r 50 -s 123456``
 
 Run php server
 --------------

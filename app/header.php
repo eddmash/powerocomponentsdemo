@@ -20,6 +20,7 @@ $whoops = new \Whoops\Run;
 $whoops->pushHandler(new \Whoops\Handler\PlainTextHandler());
 $whoops->register();
 
+
 // Load the ORM
 $configs = \App\Config\Powerorm::asArray();
 $orm = \Eddmash\PowerOrm\Application::webRun($configs);
@@ -29,6 +30,7 @@ $orm = \Eddmash\PowerOrm\Application::webRun($configs);
 
 /**@var $debugger \Eddmash\PowerOrmDebug\Debugger*/
 $debugger =$orm->debugger;
+
 $debugger->getDebugBar()["messages"]->addMessage("Welcome to the powerorm ecosystem");
 
 ?>
@@ -79,6 +81,7 @@ $debugger->getDebugBar()["messages"]->addMessage("Welcome to the powerorm ecosys
                        aria-expanded="false">Quering Examples <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/app/examples/filter.php">Filter</a></li>
+                        <li><a href="/app/examples/orderby.php">Orderby</a></li>
                         <li><a href="/app/examples/m2m.php">Relationships</a></li>
                         <li><a href="/app/examples/serialization.php">Serialization</a></li>
                         <li><a href="/app/examples/aggregations.php">Aggregations</a></li>

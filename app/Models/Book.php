@@ -19,7 +19,7 @@ use Faker\Generator;
 
 class Book extends Model implements FakeableInterface
 {
-    private function unboundFields()
+    public function unboundFields()
     {
         return [
             "title" => Model::CharField(['maxLength' => 50]),

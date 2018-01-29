@@ -12,6 +12,10 @@ require_once "../header.php"; ?>
 
     <h4 class="text-info">check the toolbar to see the queries perfomed</h4>
 <?php
+$orm->getSignalManager()->addListener(\Eddmash\PowerOrm\Signals\Signal::MODEL_PRE_INIT, function ($event) {
+    var_dump($event);
+    echo '<br>';
+});
 
 $authors = \App\Models\User::objects()->all();
 ?>

@@ -18,20 +18,19 @@ use Faker\Generator;
 
 class User extends Model implements FakeableInterface
 {
-    private function unboundFields()
+    public function unboundFields()
     {
         return [
             "username" => Model::CharField(['maxLength' => 50]),
             "age" => Model::CharField(['maxLength' => 50]),
         ];
-
     }
-
+    
     public function registerFormatter(Generator $generator)
     {
         return [
             "age" => function ($faker, $object) {
-                return $faker->numberBetween(1,150);
+                return $faker->numberBetween(1, 150);
             },
         ];
     }

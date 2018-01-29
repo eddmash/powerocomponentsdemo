@@ -7,30 +7,90 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-use function Eddmash\PowerOrm\Model\Query\Expression\q_;
-use function Eddmash\PowerOrm\Model\Query\Expression\or_;
-use function Eddmash\PowerOrm\Model\Query\Expression\not_;
-use function Eddmash\PowerOrm\Model\Query\Expression\f_;
-use function Eddmash\PowerOrm\Model\Query\Expression\count_;
-use function Eddmash\PowerOrm\Model\Query\Expression\func_;
 
-require_once "header.php"; ?>
+use App\Helpers;
+use App\Models\Blog;
 
-
-    <div class="jumbotron">`
-        <h1>Welcome You</h1>
-        <p>A simple blog system that show case some usage of the
-            <strong>powerorm</strong> and <strong>powerform</strong> components</p>
-        <p>you can also use powerormfaker to generate data if your lazy</p>
-    </div>
-
+require_once "../header.php"; ?>
+    <p>In this example we use <em>asArray()</em> to get the results as array for
+        faster and easier viewing of returned results.
+    </p>
+    <p>The <em>orderBy()</em> method also works with the model form results</p>
+    <h4 class="code">Order by Asc</h4>
 <?php
-//foreach (\App\Models\Author::objects()->all() as $item) :
-//    echo $item . "<br>";
-//    foreach ($item->blog_set->all() as $blog):
-//        echo $blog . "<br>";
-//    endforeach;
-//endforeach;
-$users = \App\Models\Blog::objects()->orderBy(array("author"));
-dump($users);
-require_once "footer.php";
+$blogs = Blog::objects()->asArray(['id', 'name'])->orderBy(['id'])
+             ->limit(1, 3);
+Helpers::beginDumpSQl(
+    $blogs->getSql(),
+    "Blog::objects()->asArray(['id', 'name'])->orderBy(['id'])->limit(1, 3)"
+);
+foreach ($blogs as $blog) :
+    Helpers::dumpArray($blog);
+endforeach;
+Helpers::endDumpSql(); ?>
+    <h4 class="code">Order by Desc</h4>
+<?php
+$blogs = Blog::objects()->asArray(['id', 'name'])->orderBy(['-id'])
+             ->limit(1, 3);
+Helpers::beginDumpSQl(
+    $blogs->getSql(),
+    "Blog::objects()->asArray(['id', 'name'])->orderBy(['-id'])->limit(1, 3)"
+);
+foreach ($blogs as $blog) :
+    Helpers::dumpArray($blog);
+endforeach;
+Helpers::endDumpSql(); ?>
+
+    <h4 class="code">Related Order by Asc related model pk</h4>
+<?php
+$blogs = Blog::objects()->asArray(['id', 'name', 'author__name', 'author__id'])
+             ->orderBy(['author'])
+             ->limit(1, 3);
+Helpers::beginDumpSQl(
+    $blogs->getSql(),
+    "Blog::objects()->asArray(['id', 'name', 'author__name', 'author__id'])->orderBy(['author'])->limit(1, 3)"
+);
+foreach ($blogs as $blog) :
+    Helpers::dumpArray($blog);
+endforeach;
+Helpers::endDumpSql(); ?>
+
+    <h4 class="code">Related Order by Desc using related model pk</h4>
+<?php
+$blogs = Blog::objects()->asArray(['id', 'name', 'author__name', 'author__id'])
+             ->orderBy(['-author'])
+             ->limit(1, 3);
+Helpers::beginDumpSQl(
+    $blogs->getSql(),
+    "Blog::objects()->asArray(['id', 'name', 'author__name', 'author__id'])->orderBy(['author'])->limit(1, 3)"
+);
+foreach ($blogs as $blog) :
+    Helpers::dumpArray($blog);
+endforeach;
+Helpers::endDumpSql(); ?>
+    <h4 class="code">Related Order by Asc using another field on the related model</h4>
+<?php
+$blogs = Blog::objects()->asArray(['id', 'name', 'author__name', 'author__id'])
+             ->orderBy(['author__name'])->limit(1, 3);
+Helpers::beginDumpSQl(
+    $blogs->getSql(),
+    "Blog::objects()->asArray(['id', 'name', 'author__name', 'author__id'])->orderBy(['author'])->limit(1, 3)"
+);
+foreach ($blogs as $blog) :
+    Helpers::dumpArray($blog);
+endforeach;
+Helpers::endDumpSql(); ?>
+    <h4 class="code">Related Order by Desc using another field on the related model</h4>
+<?php
+$blogs = Blog::objects()->asArray(['id', 'name', 'author__name', 'author__id'])
+             ->orderBy(['-author__name'])->limit(1, 3);
+Helpers::beginDumpSQl(
+    $blogs->getSql(),
+    "Blog::objects()->asArray(['id', 'name', 'author__name', 'author__id'])->orderBy(['author'])->limit(1, 3)"
+);
+foreach ($blogs as $blog) :
+    Helpers::dumpArray($blog);
+endforeach;
+Helpers::endDumpSql();
+
+require_once "../footer.php";
