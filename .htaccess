@@ -1,6 +1,2 @@
 # .htaccess main domain to subdirectory redirect
 RewriteEngine on
-
-<Directory /vendor>
-   Options +Indexes
-</Directory>
