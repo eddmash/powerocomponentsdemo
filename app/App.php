@@ -10,9 +10,9 @@ namespace App;
 
 
 use Eddmash\PowerOrm\BaseOrm;
-use Eddmash\PowerOrm\Components\Application;
+use Eddmash\PowerOrm\Components\AppComponent;
 
-class App extends Application
+class App extends AppComponent
 {
 
     public function ready(BaseOrm $baseOrm)

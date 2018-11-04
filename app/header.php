@@ -23,7 +23,7 @@ $whoops->register();
 
 // Load the ORM
 $configs = \App\Config\Powerorm::asArray();
-$orm = \Eddmash\PowerOrm\Application::webRun($configs);
+$orm = \Eddmash\PowerOrm\Loader::webRun($configs);
 
 // Get the debugger
 // the debug toolbar is invoked on the footer.php file
