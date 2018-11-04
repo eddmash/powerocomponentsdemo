@@ -14,11 +14,9 @@ namespace App\Config;
 
 use App\App;
 use App\Signal\SignalManager;
-use Eddmash\PhpGis\PhpGis;
 use Eddmash\PowerOrm\BaseOrm;
 use Eddmash\PowerOrmDebug\Toolbar;
 use Eddmash\PowerOrmFaker\Faker;
-use Gis\Gis;
 
 class Powerorm
 {
