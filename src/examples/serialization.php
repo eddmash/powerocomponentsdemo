@@ -57,5 +57,4 @@ Helpers::beginDumpSQl('', 'Json::serialize($model, array("headline", "ratings", 
 Helpers::dumpString($json);
 Helpers::endDumpSql();?>
 
-<?php
 

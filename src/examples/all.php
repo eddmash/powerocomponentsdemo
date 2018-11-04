@@ -13,8 +13,7 @@ use function Eddmash\PowerOrm\Model\Query\Expression\not_;
 use function Eddmash\PowerOrm\Model\Query\Expression\f_;
 use function Eddmash\PowerOrm\Model\Query\Expression\count_;
 use function Eddmash\PowerOrm\Model\Query\Expression\func_;
-
-require_once "header.php"; ?>
+  ?>
 
 
     <div class="jumbotron">`
@@ -35,4 +34,3 @@ $users = \App\Models\Blog::objects()->all();
 foreach ($users as $user) :
     echo $user."<br>";
 endforeach;
-require_once "footer.php";

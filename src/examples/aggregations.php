@@ -146,7 +146,3 @@ Helpers::dumpArray($sum);
 Helpers::endDumpSql();
 ?>
 
-
-<?php
-//\App\Models\Book::objects()->aggregate(max_("price")-avg_("price"));
-

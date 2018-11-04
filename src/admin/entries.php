@@ -41,4 +41,3 @@ $entries = \App\Models\Entry::objects()->selectRelated(['blog'])->all();
         <?php endforeach; ?>
     </table>
 
-<?php

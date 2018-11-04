@@ -200,5 +200,4 @@ endforeach;
 Helpers::dumpArray($results);
 Helpers::endDumpSql();
 ?>
-<?php
 

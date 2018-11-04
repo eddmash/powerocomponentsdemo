@@ -43,4 +43,3 @@ $entries = Entry::objects()->selectRelated(['blog'])->filter(["blog"=> Blog::obj
         <?php endforeach; ?>
     </table>
 
-<?php

@@ -41,4 +41,3 @@ $authors = \App\Models\User::objects()->all();
         <?php endforeach; ?>
     </table>
 
-<?php

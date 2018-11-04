@@ -31,4 +31,3 @@ endif;
         <input type="submit" value="submit" class="btn btn-primary">
     </form>
 
-<?php

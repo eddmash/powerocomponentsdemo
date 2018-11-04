@@ -43,4 +43,3 @@ $authors = \App\Models\Author::objects()->selectRelated(['user'])->all();
         <?php endforeach; ?>
     </table>
 
-<?php
