@@ -1,3 +1,7 @@
 # .htaccess main domain to subdirectory redirect
 RewriteEngine on
-RewriteRule ^$ /pages/ [L,QSA]
+
+<IfModule rewrite_module>
+  RewriteEngine On
+  RewriteRule ^debugbar/(.*) /vendor/maximebf/debugbar/src/DebugBar/Resources/$1 [NC,L]
+</IfModule>-
