@@ -9,6 +9,7 @@
  * file that was distributed with this source code.
  */
 $baseDir = dirname(dirname(__FILE__));
+
 require $baseDir . '/vendor/autoload.php';
 
 // define some constants for reuse
@@ -28,10 +29,25 @@ $orm = \Eddmash\PowerOrm\Loader::webRun($configs);
 // Get the debugger
 // the debug toolbar is invoked on the footer.php file
 
-/**@var $debugger \Eddmash\PowerOrmDebug\Debugger*/
-$debugger =$orm->debugger;
+/**@var $debugger \Eddmash\PowerOrmDebug\Debugger */
+$debugger = $orm->debugger;
 
 $debugger->getDebugBar()["messages"]->addMessage("Welcome to the powerorm ecosystem");
+
+
+function asset($asset)
+{
+
+    $base = BASEPATH;
+
+    $d = explode("/", $_SERVER['DOCUMENT_ROOT']);
+    if (BASEPATH === end($d)) {
+        $base = '';
+    } else {
+        $base = '/' . ltrim($base, '/');
+    }
+    return sprintf("%s/%s", $base, ltrim($asset, '/'));
+}
 
 ?>
 <!doctype html>
@@ -42,11 +58,11 @@ $debugger->getDebugBar()["messages"]->addMessage("Welcome to the powerorm ecosys
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="/assets/style.css">
-    <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="/assets/bootstrap/js/bootstrap.js"></script>
-    <script src="/assets/main.js"></script>
+    <link rel="stylesheet" href="<?= asset("assets/bootstrap/css/bootstrap.css") ?>">
+    <link rel="stylesheet" href="<?= asset("assets/style.css") ?>">
+    <script src="<?= asset("assets/vendor/jquery/dist/jquery.min.js") ?>"></script>
+    <script src="<?= asset("assets/bootstrap/js/bootstrap.js") ?>"></script>
+    <script src="<?= asset("assets/main.js") ?>"></script>
 
 
 </head>

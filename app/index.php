@@ -10,16 +10,6 @@
 
 require_once "header.php";
 
-//dump(\App\Models\Blog::objects()->get(['id' => 1])->author);
-//dump(\App\Models\User::objects()->get(['id' => 1])->blog_set);
-//$sum = Entry::objects()->filter(['n_pingbacks__gt'=>f_("ratings")]);
-//dump(
-//
-//);
-
-dump(\App\Models\Blog::objects()->get(['pk' => 1])->toArray());
-
-
 ?>
 
     <div class="jumbotron">`
