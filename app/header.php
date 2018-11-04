@@ -43,7 +43,7 @@ function asset($asset)
 
     $d = explode("/", $_SERVER['DOCUMENT_ROOT']);
     if (BASEPATH === end($d)) {
-        $base = '';
+        $base = '/';
     } else {
         $base = '/' . ltrim($base, '/');
     }
