@@ -10,23 +10,6 @@
  */
 
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="<?= asset("assets/bootstrap/css/bootstrap.css") ?>">
-    <link rel="stylesheet" href="<?= asset("assets/style.css") ?>">
-    <script src="<?= asset("assets/vendor/jquery/dist/jquery.min.js") ?>"></script>
-    <script src="<?= asset("assets/bootstrap/js/bootstrap.js") ?>"></script>
-    <script src="<?= asset("assets/main.js") ?>"></script>
-
-
-</head>
-<body>
 <nav class="navbar navbar-default">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->

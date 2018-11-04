@@ -398,12 +398,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/eddmash/powerorm.git",
-                "reference": "7db36dab89fdfd1cbbeab1e0a00d3142a74ea78e"
+                "reference": "16271bfc21aeacd7d82defe1ef4fafc5ce391008"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eddmash/powerorm/zipball/7db36dab89fdfd1cbbeab1e0a00d3142a74ea78e",
-                "reference": "7db36dab89fdfd1cbbeab1e0a00d3142a74ea78e",
+                "url": "https://api.github.com/repos/eddmash/powerorm/zipball/16271bfc21aeacd7d82defe1ef4fafc5ce391008",
+                "reference": "16271bfc21aeacd7d82defe1ef4fafc5ce391008",
                 "shasum": ""
             },
             "require": {
@@ -464,7 +464,7 @@
                 "php",
                 "query"
             ],
-            "time": "2018-11-04T19:19:43+00:00"
+            "time": "2018-11-04T23:02:16+00:00"
         },
         {
             "name": "eddmash/powerormdebug",
@@ -472,12 +472,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/eddmash/powerormdebug.git",
-                "reference": "5f5d5b53c39556ed39924f29b1501238e1163f3b"
+                "reference": "52809d574d255f256a48facfe4ed9fe7e36f4043"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eddmash/powerormdebug/zipball/5f5d5b53c39556ed39924f29b1501238e1163f3b",
-                "reference": "5f5d5b53c39556ed39924f29b1501238e1163f3b",
+                "url": "https://api.github.com/repos/eddmash/powerormdebug/zipball/52809d574d255f256a48facfe4ed9fe7e36f4043",
+                "reference": "52809d574d255f256a48facfe4ed9fe7e36f4043",
                 "shasum": ""
             },
             "require": {
@@ -517,7 +517,7 @@
                 "orm",
                 "php"
             ],
-            "time": "2018-09-21T20:58:41+00:00"
+            "time": "2018-11-04T23:50:14+00:00"
         },
         {
             "name": "eddmash/powerormfaker",
@@ -1102,16 +1102,16 @@
         },
         {
             "name": "respect/validation",
-            "version": "1.1.28",
+            "version": "1.1.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Respect/Validation.git",
-                "reference": "48b06254c4af1a2d6c1715eb3a2bb3cb72e08bfc"
+                "reference": "f8c90fa36859ca41c766efcf0c476d58913a7767"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Respect/Validation/zipball/48b06254c4af1a2d6c1715eb3a2bb3cb72e08bfc",
-                "reference": "48b06254c4af1a2d6c1715eb3a2bb3cb72e08bfc",
+                "url": "https://api.github.com/repos/Respect/Validation/zipball/f8c90fa36859ca41c766efcf0c476d58913a7767",
+                "reference": "f8c90fa36859ca41c766efcf0c476d58913a7767",
                 "shasum": ""
             },
             "require": {
@@ -1161,7 +1161,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2018-10-11T12:18:10+00:00"
+            "time": "2018-11-04T21:58:45+00:00"
         },
         {
             "name": "slim/csrf",

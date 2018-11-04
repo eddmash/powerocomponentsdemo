@@ -9,9 +9,6 @@
  * file that was distributed with this source code.
  */ ?>
 
-<?php $debugger->show(); ?>
 </div>
 </div>
 </div>
-</body>
-</html>
