@@ -1,10 +1,10 @@
 <?php
 
 
-use App\Config\Powerorm;
 use Eddmash\PowerOrm\Loader;
 
 require_once 'vendor/autoload.php';
+$configs = require 'config.php';
 
-Loader::consoleRun(Powerorm::asArray());
+Loader::consoleRun($configs);
 

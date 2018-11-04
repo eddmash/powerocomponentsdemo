@@ -56,18 +56,4 @@ All code samples are located under `app/`.
 The application use the builtin php server, to start using 
 
 ``php -S 127.0.0.1:8000/app/``
-
-NOTE
-----
-To create you own pages on this project you simple need to ensure you require
-- header.php  - responsible to initialization of the orm and exception handler.
-- footer.php  - display of the toolbar
-
-A simple page looks as below
-``````
-<?php require_once "header.php";?>
-    ... content goes here
-    <h4>Welcome to Power Components Demo</h4>
-<?php require_once "footer.php";?>
-``````
-
+ 
