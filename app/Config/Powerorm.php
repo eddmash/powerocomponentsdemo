@@ -24,14 +24,28 @@ class Powerorm
 {
     public static function asArray()
     {
+        $database = [
+            'host' => '127.0.0.1',
+            'dbname' => 'powerormcomponents',
+            'user' => 'root',
+            'password' => 'root',
+            'driver' => 'pdo_mysql',
+        ];
+        // this is for when app is deployed on heroku
+        if (getenv("DATABASE_URL")) {
+            $dbopts = parse_url(getenv("DATABASE_URL"));
+
+            $database = [
+                'driver' => 'pdo_pgsql',
+                'user' => $dbopts["user"],
+                'password' => $dbopts["pass"],
+                'host' => $dbopts["host"],
+                'port' => $dbopts["port"],
+                'dbname' => ltrim($dbopts["path"], '/')
+            ];
+        }
         return [
-            'database' => [
-                'host' => '127.0.0.1',
-                'dbname' => 'powerormcomponents',
-                'user' => 'root',
-                'password' => 'root',
-                'driver' => 'pdo_mysql',
-            ],
+            'database' => $database,
             'dbPrefix' => 'demo_',
             'charset' => 'utf-8',
             'timezone' => 'Africa/Nairobi',
