@@ -38,7 +38,7 @@ require_once 'src/header.php';
 //    ->filter(['user' => User::objects()->filter(['pk' => 3])])->getResults();
 
 if (is_base()) {
-    redirect('home');
+    redirect('home.php');
 } else {
     render_content();
 }
