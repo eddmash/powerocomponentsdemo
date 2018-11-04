@@ -25,12 +25,13 @@ Fetch packages
 Get into the powercomponents folder and run to get the dependencies.
 
 ``composer update``
+
 This downloads all the libraries this application depends on.
 
 Update config
 -------------
 All configs are found under `app/Config/powerorm.php`.
-create database called `tester` and update the database configurations to work with your database.
+create database called `powerormcomponents` and update the database configurations to work with your database.
 
 Run migrations
 --------------
