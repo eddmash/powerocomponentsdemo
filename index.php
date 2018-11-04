@@ -28,7 +28,7 @@ $orm = Loader::webRun($configs);
 // setup the debugger
 /**@var $debugger \Eddmash\PowerOrmDebug\Debugger */
 $debugger = $orm->debugger;
-//$debugger->setStaticBaseUrl('/store/');
+//$debugger->setStaticBaseUrl('/debugbar/');
 
 
 require_once 'src/header.php';
