@@ -32,6 +32,7 @@ $orm = \Eddmash\PowerOrm\Loader::webRun($configs);
 /**@var $debugger \Eddmash\PowerOrmDebug\Debugger */
 $debugger = $orm->debugger;
 
+$debugger->setStaticBaseUrl('/app/Resources/');
 $debugger->getDebugBar()["messages"]->addMessage("Welcome to the powerorm ecosystem");
 
 
