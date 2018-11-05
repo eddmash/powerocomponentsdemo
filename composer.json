@@ -27,6 +27,7 @@
     }
   ],
   "require": {
+    "php": ">=7",
     "symfony/var-dumper": "^3.3",
     "maximebf/debugbar": "^1.13",
     "filp/whoops": "^2.1",
