@@ -45,9 +45,6 @@ $debugger->setAssetsDirectory('assets');
     <script src="<?= asset("assets/vendor/jquery/dist/jquery.min.js") ?>"></script>
     <script src="<?= asset("assets/bootstrap/js/bootstrap.js") ?>"></script>
     <script src="<?= asset("assets/main.js") ?>"></script>
-
-    <link href="<?= asset("assets/app.css") ?>" rel="stylesheet"/>
-    <script src="<?= asset("assets/app.js") ?>"></script>
     <?= $debugger->renderAssets(); ?>
 
 </head>
@@ -68,6 +65,6 @@ $debugger->show();
 
 require_once 'src/footer.php'; ?>
 
-<script src="<?= asset('assets/js/bootstrap.min.js') ?>"></script>
+<script src="<?= asset('assets/js/bootstrap.js') ?>"></script>
 </body>
 </html>

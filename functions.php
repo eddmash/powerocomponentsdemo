@@ -97,7 +97,7 @@ function is_base()
         $urls = rtrim($urls, "/");
     }
 
-    return $_SERVER['SCRIPT_NAME'] === $urls;
+    return $_SERVER['SCRIPT_NAME'] === $urls || !$urls;
 }
 
 function render_content($default = "default.php")
