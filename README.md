@@ -16,6 +16,8 @@ This demo uses the development version of the orm branch 1.1.0.x-dev.
 
 This explains why you will find some new features on this demo.
 
+[live demo](https://powerocomponentsdemo.herokuapp.com/)
+
 Install
 -------
 ``git clone https://github.com/eddmash/powerocomponentsdemo.git``
