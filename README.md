@@ -1,5 +1,6 @@
 Demo application using powerorm ecosystem
 -----------------------------------------
+[Live Demo](https://powerocomponentsdemo.herokuapp.com/)
 
 This is a demo app that shows how to use 
 
